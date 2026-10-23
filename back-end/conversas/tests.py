@@ -136,6 +136,15 @@ class FrontendApiTests(TestCase):
         self.assertEqual(preflight.status_code, 204)
         self.assertEqual(preflight['Access-Control-Allow-Origin'], headers['HTTP_ORIGIN'])
 
+        created = client.post(
+            '/chat/create_user/',
+            data=json.dumps({'username': 'Ana'}),
+            content_type='application/json',
+            **headers,
+        )
+        self.assertEqual(created.status_code, 201)
+        self.assertEqual(created['Access-Control-Allow-Origin'], headers['HTTP_ORIGIN'])
+
         response = client.get('/chat/messages/', **headers)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response['Content-Type'], 'application/json')
