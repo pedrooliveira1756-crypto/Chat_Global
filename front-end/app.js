@@ -68,7 +68,7 @@ async function api(path, options = {}) {
       headers: options.body ? { 'Content-Type': 'application/json' } : undefined,
     });
   } catch (_) {
-    throw new Error('Não foi possível conectar à API. Confira se o Django está rodando.');
+    throw new Error(`Não foi possível acessar a API em ${apiBase}. Confira a conexão entre este site e o Render.`);
   }
 
   let data;

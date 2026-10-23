@@ -119,16 +119,16 @@ class FrontendApiTests(TestCase):
 
     @override_settings(
         DEBUG=False,
-        ALLOWED_HOSTS=['chat-api.onrender.com'],
-        FRONTEND_ORIGINS=['https://meu-chat.vercel.app'],
+        ALLOWED_HOSTS=['chat-realtime-api-1nul.onrender.com'],
+        FRONTEND_ORIGINS=['https://chatglobal-front-end.vercel.app'],
         SECURE_PROXY_SSL_HEADER=('HTTP_X_FORWARDED_PROTO', 'https'),
         SECURE_SSL_REDIRECT=True,
     )
     def test_vercel_origin_can_call_render_api(self):
         client = Client(enforce_csrf_checks=True)
         headers = {
-            'HTTP_HOST': 'chat-api.onrender.com',
-            'HTTP_ORIGIN': 'https://meu-chat.vercel.app',
+            'HTTP_HOST': 'chat-realtime-api-1nul.onrender.com',
+            'HTTP_ORIGIN': 'https://chatglobal-front-end.vercel.app',
             'HTTP_X_FORWARDED_PROTO': 'https',
         }
         preflight = client.options('/chat/create_user/', **headers)

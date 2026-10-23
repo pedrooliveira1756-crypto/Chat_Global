@@ -73,12 +73,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-FRONTEND_ORIGINS = [
-    origin.strip()
-    for origin in os.environ.get(
-        'FRONTEND_ORIGINS',
-        'http://localhost:5500,http://127.0.0.1:5500' if DEBUG else '',
-    ).split(',')
+default_frontend_origins = (
+    ['http://localhost:5500', 'http://127.0.0.1:5500']
+    if DEBUG else ['https://chatglobal-front-end.vercel.app']
+)
+FRONTEND_ORIGINS = default_frontend_origins + [
+    origin.strip().rstrip('/')
+    for origin in os.environ.get('FRONTEND_ORIGINS', '').split(',')
     if origin.strip()
 ]
 
