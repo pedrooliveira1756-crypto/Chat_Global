@@ -3,6 +3,12 @@
   "framework": null,
   "buildCommand": "node build.mjs",
   "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/chat/:path*",
+      "destination": "https://chat-realtime-api-1nul.onrender.com/chat/:path*"
+    }
+  ],
   "headers": [
     {
       "source": "/config.js",

@@ -1,13 +1,13 @@
 # Frontend
 
-Este site usa apenas HTML, CSS e JavaScript. No deploy, a Vercel executa `build.mjs`, que copia os arquivos para `dist/`. `config.js` já aponta para a API publicada no Render.
+Este site usa apenas HTML, CSS e JavaScript. No deploy, a Vercel executa `build.mjs`, que copia os arquivos para `dist/`. `config.js` chama `/chat/` na própria Vercel, e `vercel.json` encaminha as requisições ao Render.
 
 ## Vercel
 
 - Importe o repositório e selecione `front-end` como **Root Directory**.
 - Escolha **Other** como Framework Preset.
 - O `vercel.json` já define o comando de build e a pasta de saída. Faça o deploy.
-- A URL `https://chatglobal-front-end.vercel.app` já está autorizada pelo backend. Para outro domínio, adicione a nova origem em `FRONTEND_ORIGINS` no Render.
+- Depois do deploy, abra `https://chatglobal-front-end.vercel.app/chat/health/`: deve aparecer `{"status":"ok"}`.
 
 Para testar o build sem Vercel:
 
@@ -15,7 +15,7 @@ Para testar o build sem Vercel:
 node build.mjs
 ```
 
-Confira que `dist/config.js` aponta para `https://chat-realtime-api-1nul.onrender.com/chat/`. A URL da API é pública; nenhum segredo deve entrar nesse arquivo.
+Confira que `dist/config.js` usa `/chat/` fora da porta local `5500`. A URL do Render fica na regra de encaminhamento do `vercel.json`.
 
 ## No PC e na rede local
 

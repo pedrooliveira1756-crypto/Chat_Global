@@ -12,10 +12,10 @@ As mensagens são atualizadas a cada 3 segundos. A API ainda não usa WebSocket.
 1. Envie este projeto para um repositório Git acessível pelas duas plataformas.
 2. No Render, crie um **Blueprint** a partir do repositório. O arquivo `render.yaml` cria o serviço Python com raiz `back-end` e um PostgreSQL. Espere o deploy terminar e copie a URL HTTPS da API, por exemplo `https://chat-realtime-api.onrender.com`. Confira `https://SUA-API.onrender.com/chat/health/`: a resposta deve ser `{"status":"ok"}`.
 3. Na Vercel, importe o mesmo repositório como outro projeto. Defina **Root Directory** como `front-end` e **Framework Preset** como `Other`. O `vercel.json` executa o build e publica `dist/`.
-4. O frontend já aponta para `https://chat-realtime-api-1nul.onrender.com/chat/`, e o backend já permite a origem `https://chatglobal-front-end.vercel.app`. Se esses endereços mudarem, atualize `front-end/config.js` e `FRONTEND_ORIGINS` no Render.
-5. Abra a URL da Vercel e teste o cadastro, a leitura e o envio de mensagens.
+4. O frontend chama `/chat/` na própria Vercel. O `vercel.json` encaminha essas requisições para `https://chat-realtime-api-1nul.onrender.com/chat/`. Se a URL do Render mudar, atualize a regra em `front-end/vercel.json`.
+5. Confira `https://chatglobal-front-end.vercel.app/chat/health/`. A resposta deve ser `{"status":"ok"}`; isso confirma que o encaminhamento Vercel → Render está funcionando. Depois teste o cadastro, a leitura e o envio de mensagens.
 
-Se usar domínio próprio ou um endereço de preview diferente, adicione essa origem em `FRONTEND_ORIGINS`, separando múltiplas origens por vírgulas. Depois de mudar `front-end/config.js`, faça um novo deploy da Vercel.
+O navegador não precisa de CORS nesse caminho, pois chama a mesma origem da página. Se usar a API do Render diretamente em outro site, adicione esse site em `FRONTEND_ORIGINS` no Render.
 
 **Sobre o plano gratuito do Render:** o PostgreSQL Free expira depois de 30 dias e não tem backup gerenciado. O `render.yaml` usa esse plano para facilitar testes; escolha um plano persistente antes de guardar conversas importantes. O banco local `back-end/db.sqlite3` não vai para o Render automaticamente.
 

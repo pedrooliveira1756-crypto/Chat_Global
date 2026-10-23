@@ -42,6 +42,7 @@ class FrontendApiTests(TestCase):
         received = client.get('/chat/messages/', HTTP_ORIGIN=origin)
         self.assertEqual(received.status_code, 200)
         self.assertEqual(received['Content-Type'], 'application/json')
+        self.assertEqual(received['Cache-Control'], 'no-store')
         self.assertEqual(received.json()[0]['user_id'], created.json()['id'])
 
     @override_settings(

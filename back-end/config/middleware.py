@@ -27,6 +27,9 @@ class FrontendCorsMiddleware:
             response['Access-Control-Allow-Headers'] = 'Content-Type'
             patch_vary_headers(response, ['Origin'])
 
+        if request.path.startswith('/chat/'):
+            response['Cache-Control'] = 'no-store'
+
         return response
 
     @staticmethod

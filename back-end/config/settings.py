@@ -37,6 +37,8 @@ ALLOWED_HOSTS = [
 render_hostname = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if render_hostname and render_hostname not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(render_hostname)
+if not DEBUG and 'chatglobal-front-end.vercel.app' not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append('chatglobal-front-end.vercel.app')
 if DEBUG and os.environ.get('CHAT_LAN_DEV') == '1':
     ALLOWED_HOSTS = ['*']
 if not DEBUG and (not ALLOWED_HOSTS or '*' in ALLOWED_HOSTS):
