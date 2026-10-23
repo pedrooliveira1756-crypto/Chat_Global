@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142338">
+  <title>Conversa | Chat</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="config.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-icon" aria-hidden="true">✳</span> conversa<span class="brand-period">.</span></div>
+      <div class="sidebar-body">
+        <p class="eyebrow">CONVERSAS</p>
+        <div class="channel"><span aria-hidden="true">#</span> geral <span class="channel-arrow" aria-hidden="true">↗</span></div>
+        <div class="sidebar-card"><span aria-hidden="true">✦</span><p>Um lugar para trocar ideias e continuar a conversa.</p></div>
+      </div>
+      <div class="identity" id="identity" hidden>
+        <span class="identity-avatar" id="identity-avatar"></span>
+        <div class="identity-text"><strong id="identity-name"></strong><small>Você está na conversa</small></div>
+        <button class="switch-user" id="switch-user" type="button" title="Trocar usuário" aria-label="Trocar usuário">↗</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="header">
+        <div><h1><span aria-hidden="true">#</span> geral</h1><p>O assunto começa aqui.</p></div>
+        <div class="status" id="status"><span class="status-dot"></span><span id="status-text">Conectando...</span></div>
+      </header>
+
+      <section class="conversation" id="conversation" aria-label="Mensagens">
+        <div class="intro"><div class="intro-icon" aria-hidden="true">✳</div><p class="eyebrow">BEM-VINDO À CONVERSA</p><h2>Fique à vontade.<br>O papo começa aqui.</h2><p>Este é um espaço para conversar com todo mundo. Escolha um nome e envie sua primeira mensagem.</p></div>
+        <div class="messages" id="messages" role="log" aria-live="polite" aria-relevant="additions"></div>
+      </section>
+
+      <div class="composer-wrap">
+        <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+        <form class="composer" id="message-form">
+          <label class="sr-only" for="message-input">Sua mensagem</label>
+          <textarea id="message-input" rows="1" maxlength="5000" placeholder="Escreva sua mensagem..." disabled required></textarea>
+          <button class="send-button" id="send-button" type="submit" aria-label="Enviar mensagem" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 14-7-4 14-3-6-7-1Z"/><path d="m12 13 7-8"/></svg></button>
+        </form>
+        <p class="hint">Enter para enviar · Shift + Enter para nova linha</p>
+      </div>
+    </main>
+  </div>
+
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="join-title">
+    <form class="join" id="join-form">
+      <span class="join-icon" aria-hidden="true">✳</span>
+      <p class="eyebrow">BEM-VINDO</p>
+      <h2 id="join-title">Entre na conversa.</h2>
+      <p class="join-description">Escolha como as pessoas vão chamar você por aqui.</p>
+      <label for="username">Seu nome</label>
+      <input id="username" name="username" type="text" maxlength="100" autocomplete="nickname" placeholder="Como podemos chamar você?" required autofocus>
+      <p class="join-error" id="join-error" role="alert"></p>
+      <button id="join-button" type="submit">Começar a conversar <span aria-hidden="true">→</span></button>
+      <p class="join-note">Uma conversa aberta para todo mundo.</p>
+    </form>
+  </div>
+</body>
+</html>
