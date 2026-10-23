@@ -4,7 +4,7 @@ Este site usa apenas HTML, CSS e JavaScript. No deploy, a Vercel executa `build.
 
 ## Vercel
 
-- Importe o repositório e selecione `front-end` como **Root Directory**.
+- Importe o repositório e selecione `front-end` como **Root Directory**. Se o projeto estiver configurado com a raiz do repositório, o `vercel.json` da raiz também está preparado.
 - Escolha **Other** como Framework Preset.
 - O `vercel.json` já define o comando de build e a pasta de saída. Faça o deploy.
 - Depois do deploy, abra `https://chatglobal-front-end.vercel.app/chat/health/`: deve aparecer `{"status":"ok"}`.

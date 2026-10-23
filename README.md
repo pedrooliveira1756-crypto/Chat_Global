@@ -11,8 +11,8 @@ As mensagens são atualizadas a cada 3 segundos. A API ainda não usa WebSocket.
 
 1. Envie este projeto para um repositório Git acessível pelas duas plataformas.
 2. No Render, crie um **Blueprint** a partir do repositório. O arquivo `render.yaml` cria o serviço Python com raiz `back-end` e um PostgreSQL. Espere o deploy terminar e copie a URL HTTPS da API, por exemplo `https://chat-realtime-api.onrender.com`. Confira `https://SUA-API.onrender.com/chat/health/`: a resposta deve ser `{"status":"ok"}`.
-3. Na Vercel, importe o mesmo repositório como outro projeto. Defina **Root Directory** como `front-end` e **Framework Preset** como `Other`. O `vercel.json` executa o build e publica `dist/`.
-4. O frontend chama `/chat/` na própria Vercel. O `vercel.json` encaminha essas requisições para `https://chat-realtime-api-1nul.onrender.com/chat/`. Se a URL do Render mudar, atualize a regra em `front-end/vercel.json`.
+3. Na Vercel, importe o mesmo repositório como outro projeto e escolha **Framework Preset** `Other`. Pode usar **Root Directory** `front-end` (recomendado) ou a raiz do repositório; há um `vercel.json` preparado nos dois lugares. Faça um novo deploy ao mudar essa opção.
+4. O frontend chama `/chat/` na própria Vercel. O `vercel.json` usado pelo projeto encaminha essas requisições para `https://chat-realtime-api-1nul.onrender.com/chat/`. Se a URL do Render mudar, atualize os dois arquivos `vercel.json`.
 5. Confira `https://chatglobal-front-end.vercel.app/chat/health/`. A resposta deve ser `{"status":"ok"}`; isso confirma que o encaminhamento Vercel → Render está funcionando. Depois teste o cadastro, a leitura e o envio de mensagens.
 
 O navegador não precisa de CORS nesse caminho, pois chama a mesma origem da página. Se usar a API do Render diretamente em outro site, adicione esse site em `FRONTEND_ORIGINS` no Render.

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "node front-end/build.mjs",
+  "outputDirectory": "front-end/dist",
+  "rewrites": [
+    {
+      "source": "/chat/:path*",
+      "destination": "https://chat-realtime-api-1nul.onrender.com/chat/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/config.js",
+      "headers": [{ "key": "Cache-Control", "value": "no-store" }]
+    }
+  ]
+}
